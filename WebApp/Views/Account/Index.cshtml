@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Пользователи";
+}
+@Scripts.Render("~/scripts/MultipleCheckBox.js")
+<h3>@ViewBag.Title</h3>
+
+@using (Html.BeginForm("Change", "Account", FormMethod.Post))
+{
+    <button class="bi bi-lock" style="padding: 5px" title="Block" type="submit" name="option" value="b"> Заблокировать</button>
+    <button class="bi bi-unlock" style="padding: 5px" title="Unblock" type="submit" name="option" value="u"> Разблокировать</button>
+    <button class="bi bi-trash" style="padding: 5px" title="Delete" type="submit" name="option" value="d"> Удалить</button>
+
+
+    <table class="table table-condensed">
+        <tr>
+            <td><input type="checkbox" class="checkbox-inline" name="all" id="mass" onclick="MultipleChoice()" /></td>
+            <td></td>
+            <td>Имя пользователя</td>
+            <td>Адрес эл. почты</td>
+            <td>Дата регистрации</td>
+            <td>Дата последнего входа</td>
+            <td>Статус</td>
+        </tr>
+        @{
+            int i = 1;
+            foreach (var u in ViewBag.Users)
+            {
+                <tr>
+                    <td><input type="checkbox" class="checkbox-inline" name="selected" value="@u.Id" onclick="OneOfAll()" /></td>
+                    <td>@(i++)</td>
+                    <td>@u.UserName</td>
+                    <td>@u.Email</td>
+                    <td>@u.RegisterDate.ToString("g")</td>
+                    <td>@u.LastLogin.ToString("g")</td>
+                    <td>@u.Status</td>
+                </tr>
+            }
+        }
+    </table>
+}
+

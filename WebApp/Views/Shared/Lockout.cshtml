@@ -1,0 +1,12 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Заблокировано";
+}
+<h3 class="text-danger">Эта учетная запись заблокирована</h3>
+<p>
+    @Html.ActionLink("Попробуйте еще раз позже", "Login")
+</p>
+<p>
+    @Html.ActionLink("Или зарегистрируйтесь с другой эл. почтой", "Register")
+</p>
